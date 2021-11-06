@@ -306,27 +306,6 @@ void GameHud::Render(_In_ std::shared_ptr<Simple3DGame> const& game)
 
         if (game->IsActivePlay())
         {
-            // Draw a rectangle for the touch input for the move control.
-            d2dContext->DrawRectangle(
-                D2D1::RectF(
-                    0.0f,
-                    windowBounds.Height - GameUIConstants::TouchRectangleSize,
-                    GameUIConstants::TouchRectangleSize,
-                    windowBounds.Height
-                    ),
-                m_textBrush.get()
-                );
-            // Draw a rectangle for the touch input for the fire control.
-            d2dContext->DrawRectangle(
-                D2D1::RectF(
-                    windowBounds.Width - GameUIConstants::TouchRectangleSize,
-                    windowBounds.Height - GameUIConstants::TouchRectangleSize,
-                    windowBounds.Width,
-                    windowBounds.Height
-                    ),
-                m_textBrush.get()
-                );
-
             // Draw the cross hairs
             d2dContext->DrawLine(
                 D2D1::Point2F(windowBounds.Width / 2.0f - GameUIConstants::CrossHairHalfSize, windowBounds.Height / 2.0f),
@@ -340,6 +319,7 @@ void GameHud::Render(_In_ std::shared_ptr<Simple3DGame> const& game)
                 m_textBrush.get(),
                 3.0f
                 );
+            
         }
     }
 }

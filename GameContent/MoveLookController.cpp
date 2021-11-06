@@ -191,52 +191,6 @@ void MoveLookController::OnPointerPressed(
     case MoveLookControllerState::Active:
         switch (pointerDeviceType)
         {
-        case winrt::Windows::Devices::Input::PointerDeviceType::Touch:
-            if (position.x > m_moveUpperLeft.x &&
-                position.x < m_moveLowerRight.x &&
-                position.y > m_moveUpperLeft.y &&
-                position.y < m_moveLowerRight.y)
-            {
-                // This pointer is in the move control.
-                if (!m_moveInUse)
-                {
-                    // There is not an active pointer in this control yet.
-                    // Process a DPad touch down event.
-                    m_moveFirstDown = position;                 // Save location of initial contact.
-                    m_movePointerID = pointerID;                // Store the pointer using this control.
-                    m_moveInUse = true;
-                }
-            }
-            else if (position.x > m_fireUpperLeft.x &&
-                position.x < m_fireLowerRight.x &&
-                position.y > m_fireUpperLeft.y &&
-                position.y < m_fireLowerRight.y)
-            {
-                // This pointer is in the fire control.
-                if (!m_fireInUse)
-                {
-                    m_fireLastPoint = position;
-                    m_firePointerID = pointerID;
-                    m_fireInUse = true;
-                    if (!m_autoFire)
-                    {
-                        m_firePressed = true;
-                    }
-                }
-            }
-            else
-            {
-                if (!m_lookInUse)
-                {
-                    // There is not an active pointer in this control yet.
-                    m_lookLastPoint = position;                   // Save point for later move.
-                    m_lookPointerID = pointerID;                  // Store the pointer using this control.
-                    m_lookLastDelta.x = m_lookLastDelta.y = 0;    // These are for smoothing.
-                    m_lookInUse = true;
-                }
-            }
-            break;
-
         default:
             bool rightButton = pointProperties.IsRightButtonPressed();
             bool leftButton = pointProperties.IsLeftButtonPressed();
